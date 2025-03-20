@@ -1,6 +1,27 @@
 ﻿services:
-  todolist:
-    image: todolist
+  todo-list:
+    image: todo-list
+    container_name: todo-list
+    ports:
+      - "5431:8080"
+    links: 
+      - "db:database"
     build:
       context: .
-      dockerfile: TodoList/Dockerfile
+      dockerfile: TodoList.Api/Dockerfile
+  db:
+    image: postgres:latest
+    container_name: todo-list-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/pgdata
+    environment:
+      POSTGRES_USER: todo-list 
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: todo-list-db
+      PGDATA: /var/lib/postgresql/data/pgdata
+      
+volumes:
+  pgdata:
+    driver: local
