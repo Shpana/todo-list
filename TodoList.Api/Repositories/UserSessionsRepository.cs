@@ -3,7 +3,13 @@ using Dapper;
 
 namespace TodoList.Api.Repositories;
 
-public class UserSessionsRepository
+public interface IUserSessionsRepository
+{
+    public Task<long> CreateSession(IDbConnection connection, int userId, string authToken);
+    public Task<long> CreateOrUpdateSession(IDbConnection connection, int userId, string authToken);
+}
+
+public class UserSessionsRepository : IUserSessionsRepository
 {
     public async Task<long> CreateSession(
         IDbConnection connection, int userId, string authToken)

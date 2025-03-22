@@ -5,7 +5,14 @@ using TodoList.Api.DTOs;
 
 namespace TodoList.Api.Repositories;
 
-public class UsersRepository
+public interface IUsersRepository
+{
+    public Task<long> CreateUser(
+        IDbConnection connection, string name, string email, string hashedPassword);
+    public Task<User?> GetUserByEmail(IDbConnection connection, string email);
+}
+
+public class UsersRepository : IUsersRepository
 {
     private readonly ILogger<UsersRepository> _logger;
 

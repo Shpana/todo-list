@@ -1,11 +1,11 @@
 ﻿namespace TodoList.Api.Services;
 
-public class AuthorizationTokenGeneratorService
+public class AuthTokenGeneratorService
 {
     private readonly long _length;
     private readonly Random _random;
     
-    public AuthorizationTokenGeneratorService(long length)
+    public AuthTokenGeneratorService(long length)
     {
         _length = length;
         _random = new Random();
