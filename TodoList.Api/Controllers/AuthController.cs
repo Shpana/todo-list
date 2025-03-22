@@ -9,14 +9,14 @@ public class AuthController(
     ILogger<AuthController> logger,
     IDbConnectionFactory factory,
     IUsersRepository usersRepository,
-    IUserSessionsRepository sessionsRepository,
+    IUserLoginSessionsRepository sessionsRepository,
     PasswordHasher<UserHashView> hasher,
     AuthTokenGeneratorService authTokenGenerator)
     : ControllerBase
 {
     [HttpPost]
     [Route("register")]
-    public async Task<IActionResult> ProcessRegistration([FromBody] AuthV1RegisterRequest request)
+    public async Task<IActionResult> ProcessRegister([FromBody] AuthV1RegisterRequest request)
     {
         using var connection = await factory.CreateConnectionAsync();
         
@@ -29,9 +29,9 @@ public class AuthController(
             request.Name, request.Email, 
             hasher.HashPassword(new UserHashView { Name = request.Name, Email = request.Email }, request.Password));
         var authToken = authTokenGenerator.Generate();
-        await sessionsRepository.CreateOrUpdateSession(connection, user.Id, authToken);
+        var session = await sessionsRepository.CreateOrUpdateSession(connection, user.Id, authToken);
         
-        return Ok(new AuthV1RegisterResponse() { AuthToken = authToken });
+        return Ok(session.ToAuthV1RegisterResponse());
     }
 
     [HttpPost]
@@ -48,9 +48,9 @@ public class AuthController(
             return Unauthorized(new { Message = "Incorrect password!" });
 
         var authToken = authTokenGenerator.Generate();
-        await sessionsRepository.CreateOrUpdateSession(connection, user.Id, authToken);
+        var session = await sessionsRepository.CreateOrUpdateSession(connection, user.Id, authToken);
         
-        return Ok(new AuthV1LoginResponse() { AuthToken = authToken });
+        return Ok(session.ToAuthV1LoginResponse());
     }
 
     private bool IsPasswordVerifyFailed(User user, string password)

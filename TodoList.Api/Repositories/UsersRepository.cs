@@ -21,7 +21,7 @@ public class UsersRepository(
     public async Task<User> CreateUser(
         IDbConnection connection, string name, string email, string hashedPassword)
     {
-        return await connection.QueryFirstAsync<User>(
+        return await connection.QuerySingleAsync<User>(
             """
             INSERT INTO users (name, email, hashed_password, created_at, updated_at) 
             VALUES (@Name, @Email, @HashedPassword, @CreatedAt, @UpdatedAt)
@@ -38,7 +38,7 @@ public class UsersRepository(
 
     public async Task<User?> GetUserById(IDbConnection connection, int id)
     {
-        return await connection.QueryFirstOrDefaultAsync<User>(
+        return await connection.QuerySingleOrDefaultAsync<User>(
             """
             SELECT * FROM users WHERE id=@Id LIMIT 1;
             """, new { Id = id });
@@ -46,7 +46,7 @@ public class UsersRepository(
     
     public async Task<User?> GetUserByEmail(IDbConnection connection, string email)
     {
-        return await connection.QueryFirstOrDefaultAsync<User>(
+        return await connection.QuerySingleOrDefaultAsync<User>(
             """
             SELECT * FROM users WHERE email=@Email LIMIT 1;
             """, new { Email = email });

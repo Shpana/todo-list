@@ -16,7 +16,8 @@ builder.Services.AddTransient<AuthTokenGeneratorService>(_ =>
 builder.Services.AddSingleton<IDbConnectionFactory>(_ => 
     new NpgsqlDbConnectionFactory(builder.Configuration.GetConnectionString("todo-list-db")!));
 builder.Services.AddSingleton<IUsersRepository, UsersRepository>();
-builder.Services.AddSingleton<IUserSessionsRepository, UserSessionsRepository>();
+builder.Services.AddSingleton<IUserLoginSessionsRepository, UserLoginLoginSessionsRepository>();
+builder.Services.AddSingleton<ITodosRepository, TodosRepository>();
 
 var app = builder.Build();
 app.UseSwagger();
