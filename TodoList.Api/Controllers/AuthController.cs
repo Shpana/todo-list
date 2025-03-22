@@ -1,13 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using TodoList.Api.Database;
-using TodoList.Api.Models;
-using TodoList.Api.Repositories;
-using TodoList.Api.Requests;
-using TodoList.Api.Responses;
-using TodoList.Api.Services;
 
-namespace TodoList.Api.Controllers;
+namespace TodoList.Api;
 
 [Route("auth/v1")]
 [ApiController]

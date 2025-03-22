@@ -1,4 +1,4 @@
-﻿namespace TodoList.Api.Responses;
+﻿namespace TodoList.Api;
 
 public class AuthV1RegisterResponse
 {

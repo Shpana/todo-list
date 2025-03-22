@@ -1,10 +1,7 @@
 ﻿using System.Data;
 using Dapper;
-using Microsoft.AspNetCore.Identity;
-using TodoList.Api.Database;
-using TodoList.Api.Models;
 
-namespace TodoList.Api.Repositories;
+namespace TodoList.Api;
 
 public interface IUsersRepository
 {

@@ -1,4 +1,4 @@
-﻿namespace TodoList.Api.Models;
+﻿namespace TodoList.Api;
 
 public class UserLoginSession
 {

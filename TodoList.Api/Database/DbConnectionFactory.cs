@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using Npgsql;
 
-namespace TodoList.Api.Database;
+namespace TodoList.Api;
 
 public class NpgsqlDbConnectionFactory : IDbConnectionFactory
 {

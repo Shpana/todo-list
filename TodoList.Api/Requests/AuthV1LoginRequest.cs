@@ -1,4 +1,4 @@
-﻿namespace TodoList.Api.Requests;
+﻿namespace TodoList.Api;
 
 public class AuthV1LoginRequest
 {

@@ -1,8 +1,7 @@
 ﻿using System.Data;
 using Dapper;
-using TodoList.Api.Models;
 
-namespace TodoList.Api.Repositories;
+namespace TodoList.Api;
 
 public interface IUserSessionsRepository
 {

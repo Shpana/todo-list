@@ -1,4 +1,4 @@
-﻿namespace TodoList.Api.Services;
+﻿namespace TodoList.Api;
 
 public class AuthTokenGeneratorService
 {

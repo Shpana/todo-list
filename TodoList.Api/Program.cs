@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using TodoList.Api.Database;
-using TodoList.Api.Repositories;
-using TodoList.Api.Services;
+using TodoList.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +9,7 @@ builder.Services.AddControllers();
 
 Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
 
-builder.Services.AddTransient<PasswordHasher<UserLoginInfo>>();
+builder.Services.AddTransient<PasswordHasher<UserHashView>>();
 builder.Services.AddTransient<AuthTokenGeneratorService>(_ => 
     new AuthTokenGeneratorService(int.Parse(builder.Configuration["AuthTokenLength"]!)));
 
