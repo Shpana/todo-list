@@ -1,5 +1,8 @@
-﻿namespace TodoList.Api;
+﻿using System.Runtime.Serialization;
 
+namespace TodoList.Api;
+
+[DataContract]
 public class AuthV1RegisterRequest
 {
     public required string Name { get; init; }

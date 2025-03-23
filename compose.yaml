@@ -10,7 +10,6 @@
       context: .
       dockerfile: TodoList.Api/Dockerfile
   db:
-    image: postgres:latest
     container_name: todo-list-db
     ports:
       - "5432:5432"
@@ -21,6 +20,9 @@
       POSTGRES_PASSWORD: password
       POSTGRES_DB: todo-list-db
       PGDATA: /var/lib/postgresql/data/pgdata
+    build:
+      context: .
+      dockerfile: TodoList.Api/Database/Dockerfile
       
 volumes:
   pgdata:

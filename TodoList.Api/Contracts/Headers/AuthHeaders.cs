@@ -1,6 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Mvc;
 
+namespace TodoList.Api;
+
+[DataContract]
 public class AuthHeaders
 {
     [FromHeader(Name = "XUserLoginSessionId")]

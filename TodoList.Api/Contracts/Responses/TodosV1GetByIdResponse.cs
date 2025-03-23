@@ -1,5 +1,8 @@
-﻿namespace TodoList.Api;
+﻿using System.Runtime.Serialization;
 
+namespace TodoList.Api;
+
+[DataContract]
 public class TodosV1GetByIdResponse
 {
     public required int Id { get; init; }

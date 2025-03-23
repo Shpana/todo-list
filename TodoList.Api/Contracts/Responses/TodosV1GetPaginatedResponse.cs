@@ -1,5 +1,8 @@
-﻿namespace TodoList.Api;
+﻿using System.Runtime.Serialization;
 
+namespace TodoList.Api;
+
+[DataContract]
 public class TodosV1GetPaginatedTodoView
 {
     public required int Id { get; init; }
@@ -7,6 +10,7 @@ public class TodosV1GetPaginatedTodoView
     public string? Description { get; init; }
 }
 
+[DataContract]
 public class TodosV1GetPaginatedResponse
 {
     public required IEnumerable<TodosV1GetPaginatedTodoView> Data { get; init; }
