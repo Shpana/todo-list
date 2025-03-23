@@ -21,6 +21,21 @@
       POSTGRES_PASSWORD: password
       POSTGRES_DB: todo-list-db
       PGDATA: /var/lib/postgresql/data/pgdata
+  db-apply-migrations:
+    image: postgres:latest
+    container_name: todo-list-db-apply-migrations
+    restart: "no"
+    depends_on:
+      - db
+    volumes:
+      - ./TodoList.Api/Database/Migrations:/migrations
+    links:
+      - "db:database"
+    entrypoint: [ "sh", "-c", "migrations/apply_migrations.sh" ]
+    environment:
+      POSTGRES_USER: todo-list
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: todo-list-db 
       
 volumes:
   pgdata:
