@@ -1,5 +1,8 @@
-﻿namespace TodoList.Api;
+﻿using System.Runtime.Serialization;
 
+namespace TodoList.Api;
+
+[DataContract]
 public class AuthV1LoginResponse
 {
     public required int UserLoginSessionId { get; init; }

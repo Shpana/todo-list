@@ -1,6 +1,7 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Mvc;
 
+[DataContract]
 public class AuthHeaders
 {
     [FromHeader(Name = "XUserLoginSessionId")]
